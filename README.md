@@ -21,7 +21,9 @@ Redistricting is one of the most consequential and least transparent parts of U.
 
 ### From Analysis to Action
 
-`remapd` is built to help civic, legal, and policymaking teams act, not just observe.
+`remapd` is built to help civic, legal, and policymaking teams act, not just observe. 
+
+Policy in the U.S. is rarely a solo act by legislators. Research indicates that **over 60% of bills that actually become law** originate from extra-legislative sources such as advocacy groups, agencies, and interest coalitions (*Cambridge University Press, 2022*). Furthermore, a multi-state analysis identified over **10,000 bills** introduced in a single decade that were "model legislation" drafted entirely by outside organizations (*USA TODAY/Center for Public Integrity, 2019*).
 
 Policy ideas often come from outside legislatures, including advocacy groups and organized coalitions. `remapd` helps those groups participate with credible, data-backed alternatives. It also helps policymakers present proposals with measurable evidence, making public communication more transparent and easier to trust.
 
