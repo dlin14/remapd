@@ -97,13 +97,13 @@ LIAISON_MODEL=claude-3-5-sonnet-20241022
 
 Run backend:
 ```bash
+cd backend
 uvicorn main:app --reload --port 8000
 ```
 
 ### Frontend
 ```bash
 cd frontend
-npm install
 npm run dev
 ```
 
