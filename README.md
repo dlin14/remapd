@@ -1,6 +1,6 @@
 # remapd
 
-> RL-inspired + Agentic AI dynamic redistricting engine
+> RL-powered + Agentic AI dynamic redistricting engine
 
 `remapd` makes redistricting analysis more transparent by combining:
 - a multi-objective district optimizer,
