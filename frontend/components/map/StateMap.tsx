@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
+import { API_BASE } from "@/lib/api";
 
 interface StateMapProps {
   stateFips: string;
@@ -43,7 +44,7 @@ export default function StateMap({ stateFips, stateName }: StateMapProps) {
     const loadPlan = async () => {
       try {
         const resp = await fetch(
-          `http://localhost:8000/api/states/${stateFips}/district-plan`,
+          `${API_BASE}/api/states/${stateFips}/district-plan`,
           { cache: "no-store" },
         );
         if (!resp.ok) return;

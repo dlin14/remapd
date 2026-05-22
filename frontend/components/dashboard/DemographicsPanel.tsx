@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Users, DollarSign, GraduationCap, TrendingDown, AlertCircle } from "lucide-react";
+import { Users, DollarSign, GraduationCap, TrendingDown, AlertTriangle } from "lucide-react";
+import { API_BASE } from "@/lib/api";
 
 interface Demographics {
   state_name: string;
@@ -51,18 +52,22 @@ function StatCard({ icon: Icon, label, value }: { icon: React.ElementType; label
 export default function DemographicsPanel({ stateAbbr }: DemographicsPanelProps) {
   const [data, setData] = useState<Demographics | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<"network" | "api_key" | null>(null);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
-    fetch(`http://localhost:8000/api/states/${stateAbbr}/demographics`)
+    fetch(`${API_BASE}/api/states/${stateAbbr}/demographics`)
       .then((r) => {
-        if (!r.ok) throw new Error(`API error ${r.status}`);
+        if (!r.ok) throw new Error(`api_key`);
         return r.json();
       })
       .then((d) => { setData(d); setLoading(false); })
-      .catch((e) => { setError(e.message); setLoading(false); });
+      .catch((e: Error) => {
+        const isNetwork = e.message.includes("fetch") || e.message.includes("network") || e.message === "Failed to fetch";
+        setError(isNetwork ? "network" : "api_key");
+        setLoading(false);
+      });
   }, [stateAbbr]);
 
   if (loading) return (
@@ -73,13 +78,16 @@ export default function DemographicsPanel({ stateAbbr }: DemographicsPanelProps)
     </div>
   );
 
-  if (error) return (
-    <div className="flex items-start gap-2 text-xs text-red-400 p-3 rounded-lg border border-red-500/20 bg-red-500/10">
-      <AlertCircle size={14} className="mt-0.5 shrink-0" />
+  if (error === "network") return (
+    <p className="text-xs text-white/30 italic">Demographics unavailable — backend not reachable.</p>
+  );
+
+  if (error === "api_key") return (
+    <div className="flex items-start gap-2 text-xs text-amber-400/80 p-3 rounded-lg border border-amber-500/20 bg-amber-500/10">
+      <AlertTriangle size={14} className="mt-0.5 shrink-0" />
       <div>
-        <p className="font-medium">Could not load Census data</p>
-        <p className="text-white/40 mt-0.5">Add CENSUS_API_KEY to backend/.env</p>
-        <p className="text-white/30 mt-0.5 font-mono">{error}</p>
+        <p className="font-medium">Census API key not configured</p>
+        <p className="text-white/40 mt-0.5">Add <code className="font-mono">CENSUS_API_KEY</code> to <code className="font-mono">backend/.env</code> to load state demographics.</p>
       </div>
     </div>
   );
