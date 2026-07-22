@@ -1,5 +1,7 @@
 # remapd
 
+> 🏆 Claude Hackathon Finalist · [Devpost](https://devpost.com/software/remapd)
+
 > RL-powered + Agentic AI dynamic redistricting engine
 
 `remapd` makes redistricting analysis more transparent by combining:
