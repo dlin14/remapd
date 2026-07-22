@@ -1,6 +1,4 @@
-# remapd
-
-> 🏆 Claude Hackathon Finalist · [Devpost](https://devpost.com/software/remapd)
+# remapd (Claude Hackathon Finalist)
 
 > RL-powered + Agentic AI dynamic redistricting engine
 
@@ -8,6 +6,8 @@
 - a multi-objective district optimizer,
 - real Census-grounded data tooling,
 - and a LangGraph-based explanation layer for non-technical users.
+
+[View on Devpost](https://devpost.com/software/remapd)
 
 ## The Problem
 
